@@ -12,7 +12,6 @@ import java.util.Set;
 public class User implements UserDetails {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(nullable = false)
         private Long id;
 
         @Column(name = "username")
@@ -31,7 +30,7 @@ public class User implements UserDetails {
     @Transient
         private String passwordConfirm;
 
-        @ManyToMany(fetch = FetchType.LAZY)
+        @ManyToMany(fetch = FetchType.EAGER)
         private Set<Role> roles;
 
         public User(){

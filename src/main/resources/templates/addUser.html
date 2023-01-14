@@ -7,7 +7,7 @@
 <body>
 <h2>Добавить пользователя</h2>
 <div>
-    <form th:action="@{/users/add}" th:object="${user}" method="post">
+    <form th:action="@{/admin/add}" th:object="${user}" method="post">
         <fieldset>
             <legend>Данные пользователя</legend>
             <p>
@@ -27,7 +27,7 @@
         <button type="submit">Сохранить пользователя</button>
     </form>
     <br/>
-    <form th:action="@{/}">
+    <form th:action="@{/admin}">
         <button type="submit" class="btn btn-outline-danger">Назад к списку пользователей</button>
     </form>
 </div>

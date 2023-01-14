@@ -26,10 +26,9 @@ public class UserService implements UserDetailsService {
     UserRepository userRepository;
     RoleRepository roleRepository;
 
-    private final PasswordEncoder PasswordEncoder;
+    BCryptPasswordEncoder PasswordEncoder;
 
-    @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, @Lazy PasswordEncoder PasswordEncoder) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder PasswordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.PasswordEncoder = PasswordEncoder;
@@ -59,9 +58,7 @@ public class UserService implements UserDetailsService {
         if (usDB != null) {
             return false;
         }
-
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-        user.setPassword(PasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
     }
@@ -73,15 +70,17 @@ public class UserService implements UserDetailsService {
         }
         return false;
     }
-
-    public List<User> usergetList(Long idMin) {
-        return entManager.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
-                .setParameter("paramId", idMin).getResultList();
+    public User getUserById(Long id) {
+        return userRepository.findById(id).get();
     }
 
     public void edUser(User user) {
-        entManager.merge(user);
+        userRepository.save(entManager.merge(user));
     }
+    //    public List<User> usergetList(Long idMin) {
+//        return entManager.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
+//                .setParameter("paramId", idMin).getResultList();
+//    }
 }
 
 

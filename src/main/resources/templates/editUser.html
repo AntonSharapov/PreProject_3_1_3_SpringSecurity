@@ -8,7 +8,7 @@
 <h2>Изменить пользователя</h2>
 <div>
 
-  <form th:action="@{/users/edit}" th:object="${user}" method="post">
+  <form th:action="@{admin/edit}" th:object="${user}" method="put">
     <input type="hidden" name="id" th:value="${user.getId()}">
     <fieldset>
       <legend>Данные пользователя</legend>
@@ -31,7 +31,7 @@
 
 
   <br/>
-  <form th:action="@{/}">
+  <form th:action="@{/admin}">
     <button type="submit">Назад к списку пользователей</button>
   </form>
 </div>

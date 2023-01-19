@@ -1,10 +1,13 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,11 +30,13 @@ public class User implements UserDetails {
         private String password;
 
 
-    @Transient
-        private String passwordConfirm;
+        @ManyToMany(fetch = FetchType.LAZY)
+        @Fetch(FetchMode.JOIN)
+        @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id",
+                referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(
+                name = "roles_id", referencedColumnName = "id"))
 
-        @ManyToMany(fetch = FetchType.EAGER)
-        private Set<Role> roles;
+        private Set<Role> roles = new HashSet<>();
 
         public User(){
         }
@@ -48,13 +53,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
-    }
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
     public String getPassword() {
@@ -83,6 +81,7 @@ public class User implements UserDetails {
         public String getUsername() {
             return username;
         }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -123,6 +122,10 @@ public class User implements UserDetails {
         public void setLastName(String lastName) {
             this.lastName = lastName;
         }
+
+//        public String getRolesToString() {
+//        return roles.toString().replaceAll("^\\[|\\]$", "");
+//    }
 
         @Override
         public String toString() {

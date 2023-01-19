@@ -1,32 +1,41 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.*;
-import java.util.Collection;
+
 import java.util.Set;
 
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-    private String name;
-    @Transient
+    @Column(name = "role")
+    private String userRole;
+
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
-    public Role() {
-    }
+    public Role(){}
+
 
     public Role(Long id) {
         this.id = id;
     }
 
-    public Role(Long id, String name) {
+    public Role(Long id, String userRole) {
         this.id = id;
-        this.name = name;
+        this.userRole = userRole;
+    }
+
+    public Role(String userRole) {
+        this.userRole = userRole;
     }
 
     public Long getId() {
@@ -37,24 +46,20 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserRole() {
+        return userRole;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
     @Override
     public String getAuthority() {
-        return getName();
+        return userRole;
+    }
+    @Override
+    public String toString() {
+        return userRole;
     }
 }

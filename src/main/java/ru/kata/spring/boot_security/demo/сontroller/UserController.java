@@ -4,20 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import org.springframework.web.bind.annotation.RestController;
+import ru.kata.spring.boot_security.demo.service.UserServiceIMP;
 
 import java.security.Principal;
 
 @Controller
 public class UserController {
-    private UserService userService;
+    private UserServiceIMP userServiceIMP;
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserServiceIMP userServiceIMP) {
+        this.userServiceIMP = userServiceIMP;
     }
     @GetMapping("/user")
     public String oneUser(Model model, Principal principal) {
-        model.addAttribute("oneUser", userService.loadUserByUsername(principal.getName()));
+        model.addAttribute("oneUser", userServiceIMP.loadUserByUsername(principal.getName()));
         return "sh";
     }
 }

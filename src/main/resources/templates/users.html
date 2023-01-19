@@ -24,12 +24,12 @@
 
 <!--      <security: authorize access="hasRole('ADMIN')">-->
       <td>
-        <form th:action="@{edit/{id}(id=${user.getId()})}" th:object="${user}">
+        <form th:action="@{admin/edit/{id}(id=${user.getId()})}" th:object="${user}">
           <button type="submit">Изменить</button>
         </form>
       </td>
       <td>
-        <form th:action="@{delete(id=${user.getId()})}" th:object="${user}">
+        <form th:action="@{admin/delete/(id=${user.getId()})}" th:object="${user}">
           <input type="hidden" name="id" th:value="${user.getId()}">
           <button type="submit">Удалить</button>
         </form>
@@ -41,6 +41,5 @@
   </form>
 <!--  </security:authorize>-->
 </div>
-
 </body>
 </html>

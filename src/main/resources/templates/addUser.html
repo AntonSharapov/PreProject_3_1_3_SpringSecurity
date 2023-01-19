@@ -23,6 +23,10 @@
                 <label th:for="email">Почтовый ящик</label>
                 <input type="text" name="email" th:id="email" th:value="${user.getEmail()}"><br/>
             </p>
+            <p>
+                <label th:for="password">Пароль</label>
+                <input type="text" name="password" th:id="password" th:value="${user.getPassword()}"><br/>
+            </p>
         </fieldset>
         <button type="submit">Сохранить пользователя</button>
     </form>

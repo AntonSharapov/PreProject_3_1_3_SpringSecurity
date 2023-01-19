@@ -6,8 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.configs.DAO.UserDaoImpl;
-import ru.kata.spring.boot_security.demo.model.Role;
+import ru.kata.spring.boot_security.demo.DAO.UserDaoImpl;
 import ru.kata.spring.boot_security.demo.model.User;
 
 

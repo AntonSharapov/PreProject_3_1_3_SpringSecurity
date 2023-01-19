@@ -1,6 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import ru.kata.spring.boot_security.demo.configs.DAO.RoleDaoImpl;
+import ru.kata.spring.boot_security.demo.DAO.RoleDaoImpl;
 import ru.kata.spring.boot_security.demo.model.Role;
 
 

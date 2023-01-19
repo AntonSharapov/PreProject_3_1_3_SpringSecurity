@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.configs.DAO;
+package ru.kata.spring.boot_security.demo.DAO;
 
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.User;

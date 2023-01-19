@@ -69,7 +69,7 @@ public class AdminController {
         model.addAttribute("user", user);
         return "editUser";
     }
-
+    @Transactional
     @PostMapping(value = "admin/edit")
     public String edit(@ModelAttribute("user") User user) {
         userServiceIMP.updateUser(user);

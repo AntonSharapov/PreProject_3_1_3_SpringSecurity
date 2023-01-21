@@ -16,34 +16,19 @@
 <!--      <form th:action="@{admin/sh}" th:object="${user}" method="post">-->
     </tr>
 
-    <tr th:action="@{admin/sh}" th:object="${user}" th:method="get">
-      <td th:text="${user.getId()}">Id</td>
-      <td th:text="${user.getUsername()}">Имя</td>
-      <td th:text="${user.getLastName()}">Фамилия</td>
-      <td th:text="${user.getEmail()}">Почтовый ящик</td>
+<!--    <tr th:action="@{users/sh}" th:object="${user}" th:method="get">-->
+<!--      <td th:text="${user.getId()}">Id</td>-->
+<!--      <td th:text="${user.getUsername()}">Имя</td>-->
+<!--      <td th:text="${user.getLastName()}">Фамилия</td>-->
+<!--      <td th:text="${user.getEmail()}">Почтовый ящик</td>-->
 
-      <!--      <security: authorize access="hasRole('ADMIN')">-->
-      <td>
+    <tr th:action="@{/sh}" th:object="${oneUser}" >
+      <td th:text="${oneUser.}">Id</td>
+      <td th:text="${oneUser.getUsername()}">Имя</td>
+      <td th:text="${oneUser.getLastName()}">Фамилия</td>
+      <td th:text="${oneUser.getEmail()}">Почтовый ящик</td>
+    </tr>
 
-
-<!--      <td>-->
-<!--        <form th:action="@{/edit/{id}(id=${user.id})}" th:object="${user}">-->
-<!--          <button type="submit">Изменить</button>-->
-<!--        </form>-->
-<!--      </td>-->
-<!--      <td>-->
-<!--        <form th:action="@{/delete(id=${user.id})}" th:object="${user}">-->
-<!--          <input type="hidden" name="id" th:value="${user.id}">-->
-<!--          <button type="submit">Удалить</button>-->
-<!--        </form>-->
-<!--      </td>-->
-
-<!--    </tr>-->
-<!--  </table>-->
-<!--  <br/>-->
-<!--  <form th:action="@{/}">-->
-<!--    <button type="submit">Вернуться к списку пользователей</button>-->
-<!--  </form>-->
   </table>
 </div>
 </body>

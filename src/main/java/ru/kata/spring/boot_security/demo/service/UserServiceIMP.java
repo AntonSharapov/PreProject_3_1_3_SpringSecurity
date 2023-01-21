@@ -41,25 +41,25 @@ public class UserServiceIMP implements UserService, UserDetailsService {
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
-
+    @Transactional
     public void saveUser(User user) {
-        user.setPassword(PasswordEncoder.encode(user.getPassword()));
         user.setUsername(user.getUsername());
+        user.setPassword(PasswordEncoder.encode(user.getPassword()));
         userDao.saveUser(user);
     }
-
+    @Transactional
     public void deleteUser(Long id) {
             userDao.deleteUser(id);
-        }
+    }
+    @Transactional
     public User getUserById(long id) {
         return userDao.getUserById(id);
     }
-    @Override
+
     @Transactional
     public void updateUser(User user) {
         if (!user.getPassword().equals(userDao.getUserById(user.getId()).getPassword())){
             user.setPassword(PasswordEncoder.encode(user.getPassword()));
-            user.setUsername(user.getUsername());
         }
         userDao.saveUser(user);
     }

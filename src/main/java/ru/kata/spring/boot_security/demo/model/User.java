@@ -36,7 +36,7 @@ public class User implements UserDetails {
                 referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(
                 name = "roles_id", referencedColumnName = "id"))
 
-        private Set<Role> roles = new HashSet<>();
+        private Set<Role> roles;
 
         public User(){
         }

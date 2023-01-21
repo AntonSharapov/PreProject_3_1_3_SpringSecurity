@@ -42,34 +42,30 @@ public class AdminController {
     }
 //    @RequestParam("id") Long id,
 
-    @GetMapping("admin/delete)")
-    public String deleteUser(@RequestParam("id") Long id) {
-//        Long longId = Long.valueOf(id);
+    @DeleteMapping("delete/{id})")
+    public String deleteUser(@PathVariable("id") Long id) {
         userServiceIMP.deleteUser(id);
         return "redirect:/admin";
     }
 
-    @Transactional
     @GetMapping(value = "admin/add")
     public String addUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "addUser";
     }
-    @Transactional
     @PostMapping(value = "admin/add")
     public String addUser(@ModelAttribute("user") User user) {
         userServiceIMP.saveUser(user);
         return "redirect:/admin";
     }
-    @Transactional
     @GetMapping(value = "admin/edit/{id}")
     public String editUser(ModelMap model, @PathVariable("id") Long id) {
         User user = userServiceIMP.getUserById(id);
         model.addAttribute("user", user);
         return "editUser";
     }
-    @Transactional
+
     @PostMapping(value = "admin/edit")
     public String edit(@ModelAttribute("user") User user) {
         userServiceIMP.updateUser(user);

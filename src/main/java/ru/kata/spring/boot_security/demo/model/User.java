@@ -131,7 +131,7 @@ public class User implements UserDetails {
         public String toString() {
             return "User{" +
                     "id=" + id +
-                    ", name='" + username + '\'' +
+                    ", username='" + username + '\'' +
                     ", lastName='" + lastName + '\'' +
                     ", email='" + email + '\'' +
                     '}';

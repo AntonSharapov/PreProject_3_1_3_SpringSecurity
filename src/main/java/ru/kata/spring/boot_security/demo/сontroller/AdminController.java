@@ -40,9 +40,8 @@ public class AdminController {
         model.addAttribute("allUsers", userServiceIMP.getAllUsers());
         return "users";
     }
-//    @RequestParam("id") Long id,
 
-    @DeleteMapping("delete/{id})")
+    @DeleteMapping("admin/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userServiceIMP.deleteUser(id);
         return "redirect:/admin";
@@ -60,15 +59,15 @@ public class AdminController {
         return "redirect:/admin";
     }
     @GetMapping(value = "admin/edit/{id}")
-    public String editUser(ModelMap model, @PathVariable("id") Long id) {
+    public String edit(Model model, @PathVariable("id") Long id) {
         User user = userServiceIMP.getUserById(id);
         model.addAttribute("user", user);
         return "editUser";
     }
 
-    @PostMapping(value = "admin/edit")
-    public String edit(@ModelAttribute("user") User user) {
-        userServiceIMP.updateUser(user);
+    @PostMapping (value = "admin/edit")
+    public String update(@ModelAttribute("user") User user) {
+        userServiceIMP.editUser(user);
         return "redirect:/admin";
     }
     @GetMapping("admin/{userId}")

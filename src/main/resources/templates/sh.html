@@ -22,8 +22,8 @@
 <!--      <td th:text="${user.getLastName()}">Фамилия</td>-->
 <!--      <td th:text="${user.getEmail()}">Почтовый ящик</td>-->
 
-    <tr th:action="@{/sh}" th:object="${oneUser}" >
-      <td th:text="${oneUser.}">Id</td>
+    <tr th:action="@{/sh}" th:object="${oneUser}" th:method="get">
+      <td th:text="${oneUser.getId()}">Id</td>
       <td th:text="${oneUser.getUsername()}">Имя</td>
       <td th:text="${oneUser.getLastName()}">Фамилия</td>
       <td th:text="${oneUser.getEmail()}">Почтовый ящик</td>

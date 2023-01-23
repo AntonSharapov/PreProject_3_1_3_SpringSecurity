@@ -51,17 +51,17 @@ public class UserServiceIMP implements UserService, UserDetailsService {
     public void deleteUser(Long id) {
             userDao.deleteUser(id);
     }
-    @Transactional
+
     public User getUserById(long id) {
         return userDao.getUserById(id);
     }
 
     @Transactional
-    public void updateUser(User user) {
+    public void editUser(User user) {
         if (!user.getPassword().equals(userDao.getUserById(user.getId()).getPassword())){
             user.setPassword(PasswordEncoder.encode(user.getPassword()));
         }
-        userDao.saveUser(user);
+        userDao.updateUser(user);
     }
 
     @Override

@@ -14,6 +14,7 @@
       <th>Имя</th>
       <th>Фамилия</th>
       <th>Почтовый ящик</th>
+      <th>Роль</th>
     </tr>
 
     <tr th:each="user : ${allUsers}">
@@ -21,6 +22,7 @@
       <td th:text="${user.getUsername()}">Имя</td>
       <td th:text="${user.getLastName()}">Фамилия</td>
       <td th:text="${user.getEmail()}">Почтовый ящик</td>
+      <td th:text="${user.getRoles()}">Роль</td>
 
 <!--      <security: authorize access="hasRole('ADMIN')">-->
       <td>
@@ -38,6 +40,9 @@
   </table>
   <form th:action="@{admin/add}">
     <button type="submit">Добавить нового пользователя</button>
+  </form>
+  <form th:action="@{/logout}">
+    <button type="submit">Выход</button>
   </form>
 <!--  </security:authorize>-->
 </div>

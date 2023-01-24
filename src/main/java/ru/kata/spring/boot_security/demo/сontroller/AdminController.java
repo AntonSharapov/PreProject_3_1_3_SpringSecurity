@@ -35,8 +35,6 @@ public class AdminController {
 
     @GetMapping("admin")
     public String userList(Model model) {
-//        User user = (User) SecurityContextHolder.getContext()
-//                .getAuthentication().getPrincipal();
         model.addAttribute("allUsers", userServiceIMP.getAllUsers());
         return "users";
     }
@@ -53,11 +51,13 @@ public class AdminController {
         model.addAttribute("user", user);
         return "addUser";
     }
+
     @PostMapping(value = "admin/add")
     public String addUser(@ModelAttribute("user") User user) {
         userServiceIMP.saveUser(user);
         return "redirect:/admin";
     }
+
     @GetMapping(value = "admin/edit/{id}")
     public String edit(Model model, @PathVariable("id") Long id) {
         User user = userServiceIMP.getUserById(id);
@@ -65,18 +65,20 @@ public class AdminController {
         return "editUser";
     }
 
-    @PostMapping (value = "admin/edit")
+    @PostMapping(value = "admin/edit/{id}")
     public String update(@ModelAttribute("user") User user) {
         userServiceIMP.editUser(user);
         return "redirect:/admin";
     }
+
     @GetMapping("admin/{userId}")
-    public String  getUser(@PathVariable("userId") Long userId, Model model) {
+    public String getUser(@PathVariable("userId") Long userId, Model model) {
         User user = (User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
         model.addAttribute("OneUser", userServiceIMP.getUserById(userId));
         return "sh";
     }
+
 }
 
 

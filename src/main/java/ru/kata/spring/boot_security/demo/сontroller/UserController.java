@@ -18,9 +18,9 @@ public class UserController {
     public UserController(UserServiceIMP userServiceIMP) {
         this.userServiceIMP = userServiceIMP;
     }
-    @PostMapping ("user/{id}")
-    public String oneUser(Model model, Principal principal, @PathVariable Long id) {
-        model.addAttribute("oneUser", userServiceIMP.loadUserByUsername(principal.getName()));
+    @GetMapping ("user")
+    public String oneUser(Model model, Principal principal) {
+        model.addAttribute("oneUser", userServiceIMP.getByUsername(principal.getName()));
         return "sh";
     }
 }
